@@ -10,7 +10,7 @@
     /* ...style tetap sama seperti yang kamu kirim, aman dan rapi... */
     body {
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
+      background: #e8f4fd;
       margin: 0;
       padding: 20px;
     }
@@ -96,12 +96,12 @@
 
   <h2>Hitung Harga</h2>
   <div class="form-container">
-    <iframe 
-      src="https://docs.google.com/forms/d/e/1FAIpQLScdMY7gwxxY5ueZs1bb2sAuH-kqKas7I2CO8CVmFdxkaiWuiQ/viewform?embedded=true" 
-      loading="lazy"
-      allowfullscreen>
-      Memuat…
-    </iframe>
+   <iframe 
+  src="https://docs.google.com/forms/d/e/1FAIpQLSe2oDnGrmNs-Jx32y0AYSfierbvDeLTnhD0Cy-BZyMM7G39yQ/viewform?embedded=true" 
+  loading="lazy"
+  allowfullscreen>
+  Memuat…
+</iframe>
   </div>
 
   <h2>Hasil Perhitungan</h2>
@@ -114,7 +114,7 @@
 
   <script defer>
     async function loadData() {
-      const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTxoFsBNjnr3oTGW1RCmwY2t4QO0cg4AWq8qMPEutn0Lm-_d0dHxRh3IoSinof4_8sTlpKpmJkiEVfy/pub?gid=0&single=true&output=csv';
+      const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQG4WWj0h64qTYF-IdM6avL8qI0DtjtEQGDWRJU6ugmGmXEJS6pSSfYPIpQW6raettvdaqNcJzn5_HA/pub?gid=0&single=true&output=csv';
       try {
         const res = await fetch(url);
         const text = await res.text();
