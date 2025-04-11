@@ -1,1 +1,1 @@
-# Kredit-ringan
+# kredit-syariah

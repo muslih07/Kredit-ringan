@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Kredit Syariah di Sangatta dengan prinsip transparansi dan tanpa riba" />
+  <title>Data Kredit Syariah</title>
+  <style>
+    /* ...style tetap sama seperti yang kamu kirim, aman dan rapi... */
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 0;
+      font-size: 24px;
+    }
+    .form-container {
+      max-width: 100%;
+      height: 95vh;
+      margin-bottom: 40px;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .product-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 24px;
+      text-align: center;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .value {
+      font-size: 22px;
+      color: #d0011b;
+    }
+    button {
+      display: block;
+      margin: 0 auto 30px auto;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #f53d2d;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #c73124;
+    }
+    #wa-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 9999;
+    }
+    #wa-button:hover {
+      background-color: #1eb154;
+    }
+  </style>
+</head>
+<body>
+  <div style="max-width:800px; margin:0 auto 40px auto; background:white; padding:20px; border-radius:16px; box-shadow:0 4px 10px rgba(0,0,0,0.05);">
+    <h2 style="text-align:center;">Kredit Syariah Sangatta</h2>
+    <p>Kredit syariah dengan akad Murabahan: Transaksi transparan pembeli dan penjual saling mengetahui Harga Modal dan keuntungan.</p>
+    <p>Kredit syariah adalah solusi keuangan sesuai prinsip Islam, tanpa bunga (riba) dan spekulasi.</p>
+    <p>Kami menyediakan skema cicilan transparan, harga tetap dari awal, diawasi oleh tim paham syariah.</p>
+    <p>Setelah isi form, klik Kirim lalu tombol "Refresh Data" untuk melihat simulasi cicilan Anda.</p>
+  </div>
+
+  <h2>Hitung Harga</h2>
+  <div class="form-container">
+    <iframe 
+      src="https://docs.google.com/forms/d/e/1FAIpQLScdMY7gwxxY5ueZs1bb2sAuH-kqKas7I2CO8CVmFdxkaiWuiQ/viewform?embedded=true" 
+      loading="lazy"
+      allowfullscreen>
+      Memuat…
+    </iframe>
+  </div>
+
+  <h2>Hasil Perhitungan</h2>
+  <button onclick="loadData()">Refresh Data</button>
+  <div class="container" id="data-container"></div>
+
+  <a href="https://wa.me/6282352680715?text=Assalamualaikum%0ASaya%0ANama%20%3A%20%0AAlamat%20%3A20%%0ATertarik%20untuk%20kredit%20barang%2C%20mohon%20hubungi%20ya..%0ATerima%20kasih" 
+     target="_blank" 
+     id="wa-button">💬 Chat Admin Widiya</a>
+
+  <script defer>
+    async function loadData() {
+      const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTxoFsBNjnr3oTGW1RCmwY2t4QO0cg4AWq8qMPEutn0Lm-_d0dHxRh3IoSinof4_8sTlpKpmJkiEVfy/pub?gid=0&single=true&output=csv';
+      try {
+        const res = await fetch(url);
+        const text = await res.text();
+        const rows = text.trim().split('\n').slice(1, 5);
+        const labels = ['Harga Toko', 'Lama Cicilan', 'Harga Jual', 'Cicilan Bulanan'];
+        const container = document.getElementById('data-container');
+        container.innerHTML = '';
+
+        rows.forEach((row, i) => {
+          const cols = row.split(',');
+          const card = document.createElement('div');
+          card.className = 'product-card';
+          card.innerHTML = `
+            <div class="title">${labels[i] || cols[0]}</div>
+            <div class="value">${cols[1]}</div>
+          `;
+          container.appendChild(card);
+        });
+      } catch (error) {
+        const container = document.getElementById('data-container');
+        container.innerHTML = '<p style="color:red;">Gagal memuat data. Silakan coba lagi nanti.</p>';
+      }
+    }
+
+    loadData();
+  </script>
+  
+    <h2>Bagaimana Caranya</h2>
+  
+  <h3>1. Cara Pertama</h3>
+  <ol type="a">
+    <li>Tunjukkan ke kami barang apa yang Anda perlukan, di mana tokonya, berapa harganya, dan detail lainnya.</li>
+    <li>Kami datang ke toko yang Anda tunjukkan.</li>
+    <li>Kami membeli barang tersebut dan menjualnya kepada Anda dengan harga yang disepakati.</li>
+    <li>Anda tinggal mengambil barang tersebut ke kami, atau barang kami antar ke rumah.</li>
+  </ol>
+
+  <h3>2. Cara Kedua</h3>
+  <ol type="a">
+    <li>Anda bersama kami mencari barang ke toko.</li>
+    <li>Barang pilihan Anda kami beli dan langsung kami jual kepada Anda dengan harga yang disepakati.</li>
+  </ol>
+
+  <h3>3. Cara Ketiga</h3>
+  <ol type="a">
+    <li>Anda meminta kami untuk mencarikan barang.</li>
+    <li>Setelah barang kami dapatkan, kami akan membuat kesepakatan dengan Anda.</li>
+    <li>Barang kami beli dan kami jual kepada Anda dengan harga yang disepakati.</li>
+  </ol>
+
+</body>
+</html>
