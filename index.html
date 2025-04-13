@@ -7,124 +7,35 @@
   <meta name="description" content="Kredit Syariah di Sangatta dengan prinsip transparansi dan tanpa riba" />
   <title>Data Kredit Syariah</title>
   <style>
-    /* ...style tetap sama seperti yang kamu kirim, aman dan rapi... */
     body {
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
+      background: #e8f4fd;
       margin: 0;
       padding: 20px;
+      color: #333;
     }
+
     h2 {
       text-align: center;
       margin-top: 0;
       font-size: 24px;
+      color: #ff5722;
     }
+
     .form-container {
       max-width: 100%;
       height: 95vh;
       margin-bottom: 40px;
     }
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 16px;
-      margin-bottom: 30px;
-    }
-    .product-card {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      padding: 24px;
-      text-align: center;
-    }
-    .title {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    .value {
-      font-size: 22px;
-      color: #d0011b;
-    }
-    button {
-      display: block;
-      margin: 0 auto 30px auto;
-      padding: 12px 24px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      background-color: #f53d2d;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #c73124;
-    }
-    #wa-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25D366;
-      color: white;
-      padding: 12px 18px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      z-index: 9999;
-    }
-    #wa-button:hover {
-      background-color: #1eb154;
-    }
-  </style>
-</head>
-<body>
-  <div style="max-width:800px; margin:0 auto 40px auto; background:white; padding:20px; border-radius:16px; box-shadow:0 4px 10px rgba(0,0,0,0.05);">
-    <h2 style="text-align:center;">Kredit Syariah Sangatta</h2>
-    <p>Kredit syariah dengan akad Murabahan: Transaksi transparan pembeli dan penjual saling mengetahui Harga Modal dan keuntungan.</p>
-    <p>Kredit syariah adalah solusi keuangan sesuai prinsip Islam, tanpa bunga (riba) dan spekulasi.</p>
-    <p>Kami menyediakan skema cicilan transparan, harga tetap dari awal, diawasi oleh tim paham syariah.</p>
-    <p>Setelah isi form, klik Kirim lalu tombol "Refresh Data" untuk melihat simulasi cicilan Anda.</p>
-  </div>
-
-
-<head>
-    <style>
-  #hasilCicilan p {
-    font-size: 20px;
-  }
-</style>
-
-  <meta charset="UTF-8">
-  <title>Simulasi Kredit</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fffaf5;
-      padding: 10px;
-      color: #333;
-    }
 
     .container {
       max-width: 500px;
-      margin: 0 auto;
+      margin: 0 auto 40px auto;
       background-color: #fff;
-      padding: 10px;
+      padding: 20px;
       border: 2px solid #ff5722;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(255, 87, 34, 0.2);
-    }
-
-    h2 {
-      color: #ff5722;
-      text-align: center;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     label {
@@ -139,23 +50,24 @@
       padding: 4px;
       margin-top: 2px;
       border: 1px solid #ccc;
-      border-radius: 2px;
+      border-radius: 4px;
     }
 
     button {
       margin-top: 20px;
       width: 100%;
-      padding: 10px;
-      background-color: #ff5722;
+      padding: 12px;
+      background-color: #f53d2d;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       font-size: 18px;
+      font-weight: bold;
       cursor: pointer;
     }
 
     button:hover {
-      background-color: #e64a19;
+      background-color: #c73124;
     }
 
     #hasilCicilan {
@@ -164,10 +76,63 @@
       background-color: #fff3e0;
       border-left: 4px solid #ff5722;
       border-radius: 5px;
+      font-size: 18px;
+    }
+
+    #wa-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 9999;
+    }
+
+    #wa-button:hover {
+      background-color: #1eb154;
+    }
+
+    .info-box {
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .steps {
+      background: #fff;
+      padding: 20px;
+      margin-top: 40px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
   </style>
 </head>
 <body>
+
+  <a 
+    id="wa-button"
+    href="https://wa.me/6282352680715?text=Assalamualaikum%0ASaya%0ANama%20%3A%0AAlamat%20%3A%0ASaya%20tertarik%20untuk%20kredit%20barang%2C%20mohon%20dihubungi%20ya...%0AAjzkro" 
+    target="_blank">
+    💬 Chat Admin Widiya
+  </a>
+
+  <div class="info-box">
+    <h2>Kredit Syariah Sangatta</h2>
+    <p>Kredit syariah dengan akad Murabahan: Transaksi transparan pembeli dan penjual saling mengetahui Harga Modal dan keuntungan.</p>
+    <p>Kredit syariah adalah solusi keuangan sesuai prinsip Islam, tanpa bunga (riba) dan spekulasi.</p>
+    <p>Kami menyediakan skema cicilan transparan, harga tetap dari awal, diawasi oleh tim paham syariah.</p>
+    <p>Setelah isi form, klik Kirim lalu tombol "Refresh Data" untuk melihat simulasi cicilan Anda.</p>
+  </div>
+
   <div class="container">
     <h2>Simulasi Kredit</h2>
 
@@ -183,6 +148,51 @@
     <button onclick="hitungCicilan()">Hitung Cicilan</button>
 
     <div id="hasilCicilan"></div>
+  </div>
+
+<div style="background: #fff; padding: 20px; margin-top: 40px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+  <h3>Syarat Kredit</h3>
+  <ol>
+    <li>Amanah</li>
+    <li>Dapat dihubungi</li>
+    <li>Berpenghasilan</li>
+    <li>Domisili di Sangatta atau sekitarnya</li>
+    <li>Lain-lain sesuai kesepakatan</li>
+  </ol>
+</div>
+
+<div style="background: #fff; padding: 20px; margin-top: 40px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+  <h3>Langkah Pengajuan Kredit</h3>
+  <ol>
+    <li>Chat Admin</li>
+    <li>Tentukan salah satu skema pembelian</li>
+  </ol>
+</div>
+
+
+<div style="background: #fff; padding: 20px; margin-top: 40px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+  <h3>Skema Pembelian</h3>
+
+    <h3>1. Cara Pertama</h3>
+    <ol type="a">
+      <li>Tunjukkan ke kami barang apa yang Anda perlukan, di mana tokonya, berapa harganya, dan detail lainnya.</li>
+      <li>Kami datang ke toko yang Anda tunjukkan.</li>
+      <li>Kami membeli barang tersebut dan menjualnya kepada Anda dengan harga yang disepakati.</li>
+      <li>Anda tinggal mengambil barang tersebut ke kami, atau barang kami antar ke rumah.</li>
+    </ol>
+
+    <h3>2. Cara Kedua</h3>
+    <ol type="a">
+      <li>Anda bersama kami mencari barang ke toko.</li>
+      <li>Barang pilihan Anda kami beli dan langsung kami jual kepada Anda dengan harga yang disepakati.</li>
+    </ol>
+
+    <h3>3. Cara Ketiga</h3>
+    <ol type="a">
+      <li>Anda meminta kami untuk mencarikan barang.</li>
+      <li>Setelah barang kami dapatkan, kami akan membuat kesepakatan dengan Anda.</li>
+      <li>Barang kami beli dan kami jual kepada Anda dengan harga yang disepakati.</li>
+    </ol>
   </div>
 
   <script>
@@ -206,10 +216,7 @@
         return;
       }
 
-      let faktor;
-      if (lama <= 5) faktor = 1.10;
-      else faktor = 1 + (lama * 0.02);
-
+      let faktor = (lama <= 5) ? 1.10 : 1 + (lama * 0.02);
       const hargaSetelahDP = harga - dp;
       const hargaJualSementara = hargaSetelahDP * faktor;
       const cicilanAwal = hargaJualSementara / lama;
@@ -222,51 +229,11 @@
       const batasAkhir = tanggalSekarang.toLocaleDateString('id-ID', opsiTanggal);
 
       hasil.innerHTML = `
- 
         <p><b>Harga Jual:</b> Rp ${hargaJualFinal.toLocaleString('id-ID')}</p>
         <p><b>Cicilan Bulanan:</b> Rp ${cicilanFinal.toLocaleString('id-ID')}</p>
         <p><b>Batas Akhir Cicilan:</b> ${batasAkhir}</p>
       `;
     }
   </script>
-</body>
-
-
-
-
-<div style="background: #fff; padding: 20px; margin-top: 40px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-  <h3>Bagaimana caranya</h3>
-  <ol>
-    <li>Hubungi Admin Kami</li>
-    <li>Tunggu survei 1-2 hari (InshaAllah kami akan hadir di rumah Anda)</li>
-    <li>silahkan isi surat kesepakatan (diberikan saat survei)</li>
-    <li>Jika disetujui maka akan dilanjutkan proses jual beli pilih salah satu skema pembelian</li>
-    <li>Jika belum disetujui maka jual beli akan ditunda</li>
-  </ol>
-</div>
-<div style="background: #fff; padding: 20px; margin-top: 40px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">  
-    <h3>Skema Pembelian barang</h3>
-  
-  <h3>1. Cara Pertama</h3>
-  <ol type="a">
-    <li>Tunjukkan ke kami barang apa yang Anda perlukan, di mana tokonya, berapa harganya, dan detail lainnya.</li>
-    <li>Kami datang ke toko yang Anda tunjukkan.</li>
-    <li>Kami membeli barang tersebut dan menjualnya ke Anda dengan harga yang disepakati.</li>
-    <li>Anda tinggal mengambil barang tersebut ke kami, atau barang kami antar ke rumah.</li>
-  </ol>
-
-  <h3>2. Cara Kedua</h3>
-  <ol type="a">
-    <li>Anda bersama kami mencari barang ke toko.</li>
-    <li>Barang pilihan Anda kami beli dan langsung kami jual ke Anda dengan harga yang disepakati.</li>
-  </ol>
-
-  <h3>3. Cara Ketiga</h3>
-  <ol type="a">
-    <li>Anda meminta kami untuk mencarikan barang.</li>
-    <li>Setelah barang kami dapatkan, kami akan membuat kesepakatan dengan Anda.</li>
-    <li>Barang kami beli dan kami jual ke Anda dengan harga yang disepakati.</li>
-  </ol>
-</div>
 </body>
 </html>
