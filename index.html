@@ -10,7 +10,7 @@
     /* ...style tetap sama seperti yang kamu kirim, aman dan rapi... */
     body {
       font-family: Arial, sans-serif;
-      background: #e8f4fd;
+      background: #f5f5f5;
       margin: 0;
       padding: 20px;
     }
@@ -94,87 +94,179 @@
     <p>Setelah isi form, klik Kirim lalu tombol "Refresh Data" untuk melihat simulasi cicilan Anda.</p>
   </div>
 
-  <h2>Hitung Harga</h2>
-  <div class="form-container">
-   <iframe 
-  src="https://docs.google.com/forms/d/e/1FAIpQLSe2oDnGrmNs-Jx32y0AYSfierbvDeLTnhD0Cy-BZyMM7G39yQ/viewform?embedded=true" 
-  loading="lazy"
-  allowfullscreen>
-  Memuat…
-</iframe>
-  </div>
 
-  <h2>Hasil Perhitungan</h2>
-  <button onclick="loadData()">Refresh Data</button>
-  <div class="container" id="data-container"></div>
+<head>
+    <style>
+  #hasilCicilan p {
+    font-size: 20px;
+  }
+</style>
 
-  <a 
-  id="wa-button"
-  href="https://wa.me/6282352680715?text=Assalamualaikum%0ASaya%0ANama%20%3A%0AAlamat%20%3A%0ASaya%20tertarik%20untuk%20kredit%20barang%2C%20mohon%20dihubungi%20ya...%0AAjzkro" 
-  target="_blank"
-  style="display:inline-block; background-color:#25D366; color:white; padding:10px 20px; text-decoration:none; border-radius:8px;">
-  💬 Chat Admin Widiya
-</a>
-
-
-  <script defer>
-    async function loadData() {
-      const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQG4WWj0h64qTYF-IdM6avL8qI0DtjtEQGDWRJU6ugmGmXEJS6pSSfYPIpQW6raettvdaqNcJzn5_HA/pub?gid=0&single=true&output=csv';
-      try {
-        const res = await fetch(url);
-        const text = await res.text();
-        const rows = text.trim().split('\n').slice(1, 6);
-        const labels = ['Harga Toko', 'Lama Cicilan', 'Harga Jual', 'Cicilan Bulanan', 'Batas Akhir Cicilan'];
-        const container = document.getElementById('data-container');
-        container.innerHTML = '';
-
-        rows.forEach((row, i) => {
-          const cols = row.split(',');
-          const card = document.createElement('div');
-          card.className = 'product-card';
-          card.innerHTML = `
-            <div class="title">${labels[i] || cols[0]}</div>
-            <div class="value">${cols[1]}</div>
-          `;
-          container.appendChild(card);
-        });
-      } catch (error) {
-        const container = document.getElementById('data-container');
-        container.innerHTML = '<p style="color:red;">Gagal memuat data. Silakan coba lagi nanti.</p>';
-      }
+  <meta charset="UTF-8">
+  <title>Simulasi Kredit</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fffaf5;
+      padding: 10px;
+      color: #333;
     }
 
-    loadData();
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 10px;
+      border: 2px solid #ff5722;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 87, 34, 0.2);
+    }
+
+    h2 {
+      color: #ff5722;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input {
+      font-size: 18px;
+      width: 95%;
+      padding: 4px;
+      margin-top: 2px;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background-color: #ff5722;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e64a19;
+    }
+
+    #hasilCicilan {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #fff3e0;
+      border-left: 4px solid #ff5722;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Simulasi Kredit</h2>
+
+    <label for="hargaBarang">Harga Barang:</label>
+    <input type="number" id="hargaBarang" placeholder="Contoh: 10000000">
+
+    <label for="lamaCicilan">Lama Cicilan (bulan):</label>
+    <input type="number" id="lamaCicilan" placeholder="Contoh: 10">
+
+    <label for="dp">DP (opsional):</label>
+    <input type="number" id="dp" placeholder="Contoh: 1000000">
+
+    <button onclick="hitungCicilan()">Hitung Cicilan</button>
+
+    <div id="hasilCicilan"></div>
+  </div>
+
+  <script>
+    function pembulatanRibuan(nilai) {
+      return Math.floor(nilai / 1000) * 1000;
+    }
+
+    function hitungCicilan() {
+      const harga = parseFloat(document.getElementById('hargaBarang').value);
+      const lama = parseInt(document.getElementById('lamaCicilan').value);
+      const dp = parseFloat(document.getElementById('dp').value) || 0;
+      const hasil = document.getElementById('hasilCicilan');
+
+      if (isNaN(harga) || isNaN(lama)) {
+        hasil.innerHTML = "Harap isi Harga dan Lama Cicilan.";
+        return;
+      }
+
+      if (lama > 12) {
+        hasil.innerHTML = "<b>Maaf, maksimal cicilan 12 bulan.</b>";
+        return;
+      }
+
+      let faktor;
+      if (lama <= 5) faktor = 1.10;
+      else faktor = 1 + (lama * 0.02);
+
+      const hargaSetelahDP = harga - dp;
+      const hargaJualSementara = hargaSetelahDP * faktor;
+      const cicilanAwal = hargaJualSementara / lama;
+      const cicilanFinal = pembulatanRibuan(cicilanAwal);
+      const hargaJualFinal = cicilanFinal * lama;
+
+      const tanggalSekarang = new Date();
+      tanggalSekarang.setMonth(tanggalSekarang.getMonth() + lama);
+      const opsiTanggal = { month: 'long', year: 'numeric' };
+      const batasAkhir = tanggalSekarang.toLocaleDateString('id-ID', opsiTanggal);
+
+      hasil.innerHTML = `
+ 
+        <p><b>Harga Jual:</b> Rp ${hargaJualFinal.toLocaleString('id-ID')}</p>
+        <p><b>Cicilan Bulanan:</b> Rp ${cicilanFinal.toLocaleString('id-ID')}</p>
+        <p><b>Batas Akhir Cicilan:</b> ${batasAkhir}</p>
+      `;
+    }
   </script>
-  <div style="background: #fff; padding: 20px; margin-top: 40px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-  <h3>Langkah Pengajuan kredit</h3>
+</body>
+
+
+
+
+<div style="background: #fff; padding: 20px; margin-top: 40px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+  <h3>Bagaimana caranya</h3>
   <ol>
-    <li>Chat Admin</li>
-    <li>Tentukan salah satu skema pembelian, komunikasi menggunakan Watshapp</li>
-    </ol>
+    <li>Hubungi Admin Kami</li>
+    <li>Tunggu survei 1-2 hari (InshaAllah kami akan hadir di rumah Anda)</li>
+    <li>silahkan isi surat kesepakatan (diberikan saat survei)</li>
+    <li>Jika disetujui maka akan dilanjutkan proses jual beli pilih salah satu skema pembelian</li>
+    <li>Jika belum disetujui maka jual beli akan ditunda</li>
+  </ol>
 </div>
+<div style="background: #fff; padding: 20px; margin-top: 40px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">  
+    <h3>Skema Pembelian barang</h3>
   
-    <h2>Skema Pembelian</h2>
-    <h3>1. Cara Pertama</h3>
+  <h3>1. Cara Pertama</h3>
   <ol type="a">
     <li>Tunjukkan ke kami barang apa yang Anda perlukan, di mana tokonya, berapa harganya, dan detail lainnya.</li>
     <li>Kami datang ke toko yang Anda tunjukkan.</li>
-    <li>Kami membeli barang tersebut dan menjualnya kepada Anda dengan harga yang disepakati.</li>
+    <li>Kami membeli barang tersebut dan menjualnya ke Anda dengan harga yang disepakati.</li>
     <li>Anda tinggal mengambil barang tersebut ke kami, atau barang kami antar ke rumah.</li>
   </ol>
 
   <h3>2. Cara Kedua</h3>
   <ol type="a">
     <li>Anda bersama kami mencari barang ke toko.</li>
-    <li>Barang pilihan Anda kami beli dan langsung kami jual kepada Anda dengan harga yang disepakati.</li>
+    <li>Barang pilihan Anda kami beli dan langsung kami jual ke Anda dengan harga yang disepakati.</li>
   </ol>
 
   <h3>3. Cara Ketiga</h3>
   <ol type="a">
     <li>Anda meminta kami untuk mencarikan barang.</li>
     <li>Setelah barang kami dapatkan, kami akan membuat kesepakatan dengan Anda.</li>
-    <li>Barang kami beli dan kami jual kepada Anda dengan harga yang disepakati.</li>
+    <li>Barang kami beli dan kami jual ke Anda dengan harga yang disepakati.</li>
   </ol>
-
+</div>
 </body>
 </html>
